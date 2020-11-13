@@ -1,0 +1,111 @@
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+General:
+    LedgerType: file
+    ListenAddress: 0.0.0.0
+    ListenPort: 7050
+
+    TLS:
+        Enabled: true
+        PrivateKey: crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/tls/server.key
+        Certificate: crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/tls/server.crt
+        RootCAs:
+            - crypto-config/ordererOrganizations/smartm2m.co.kr/tlsca/tlsca.smartm2m.co.kr-cert.pem
+            - crypto-config/peerOrganizations/pusan.smartm2m.co.kr/tlsca/tlsca.pusan.smartm2m.co.kr-cert.pem
+            - crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/tlsca/tlsca.ulsan.smartm2m.co.kr-cert.pem
+            - crypto-config/peerOrganizations/seoul.smartm2m.co.kr/tlsca/tlsca.seoul.smartm2m.co.kr-cert.pem
+        ClientAuthRequired: true
+        ClientRootCAs:
+            - crypto-config/ordererOrganizations/smartm2m.co.kr/tlsca/tlsca.smartm2m.co.kr-cert.pem
+            - crypto-config/peerOrganizations/pusan.smartm2m.co.kr/tlsca/tlsca.pusan.smartm2m.co.kr-cert.pem
+            - crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/tlsca/tlsca.ulsan.smartm2m.co.kr-cert.pem
+            - crypto-config/peerOrganizations/seoul.smartm2m.co.kr/tlsca/tlsca.seoul.smartm2m.co.kr-cert.pem
+    Keepalive:
+        ServerMinInterval: 60s
+        ServerInterval: 7200s
+        ServerTimeout: 20s
+    Cluster:
+        ClientCertificate: crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/tls/server.crt
+        ClientPrivateKey: crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/tls/server.key
+        DialTimeout: 5s
+        RPCTimeout: 7s
+        RootCAs:
+            - crypto-config/ordererOrganizations/smartm2m.co.kr/tlsca/tlsca.smartm2m.co.kr-cert.pem
+            - crypto-config/peerOrganizations/pusan.smartm2m.co.kr/tlsca/tlsca.pusan.smartm2m.co.kr-cert.pem
+            - crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/tlsca/tlsca.ulsan.smartm2m.co.kr-cert.pem
+            - crypto-config/peerOrganizations/seoul.smartm2m.co.kr/tlsca/tlsca.seoul.smartm2m.co.kr-cert.pem
+        ReplicationBufferSize: 20971520
+        ReplicationPullTimeout: 5s
+        ReplicationRetryTimeout: 5s
+    GenesisMethod: file
+    GenesisProfile: MainChannel
+    GenesisFile: mc.block
+    SystemChannel: test-smartm2m.co.kr-system-channel
+    LocalMSPDir: crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/msp
+    LocalMSPID: OrdererMSP
+    Profile:
+        Enabled: false
+        Address: 0.0.0.0:6060
+    BCulsanP:
+        Default: SW
+        SW:
+            Hash: SHA2
+            Security: 256
+            FileKeyStore:
+                KeyStore:
+    Authentication:
+        TimeWindow: 15m
+FileLedger:
+    Location: /var/hyperledger/production/orderer
+    Prefix: hyperledger-fabric-ordererledger
+
+RAMLedger:
+    HistorySize: 1000
+
+Kafka:
+    Retry:
+        ShortInterval: 5s
+        ShortTotal: 10m
+        LongInterval: 5m
+        LongTotal: 12h
+        NetworkTimeouts:
+            DialTimeout: 10s
+            ReadTimeout: 10s
+            WriteTimeout: 10s
+        Metadata:
+            RetryBackoff: 250ms
+            RetryMax: 3
+        Producer:
+            RetryBackoff: 100ms
+            RetryMax: 3
+        Consumer:
+            RetryBackoff: 2s
+    Topic:
+        ReplicationFactor: 3
+    Verbose: false
+    TLS:
+        Enabled: false
+        PrivateKey:
+        Certificate:
+        RootCAs:
+    SASLPlain:
+        Enabled: false
+        User:
+        Password:
+    Version:
+Debug:
+    BroadcastTraceDir:
+    DeliverTraceDir:
+Metriulsan:
+    Provider: disabled
+    Statsd:
+        Network: udp
+        Address: 127.0.0.1:8125
+        WriteInterval: 30s
+        Prefix:
+Consensus:
+    WALDir: /var/hyperledger/production/orderer/etcdraft/wal
+    SnapDir: /var/hyperledger/production/orderer/etcdraft/snapshot
