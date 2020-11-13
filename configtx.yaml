@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
----
 Organizations:
     - &OrdererOrg
         Name: OrdererMSP
@@ -23,9 +22,6 @@ Organizations:
         Name: PusanMSP
         ID: PusanMSP
         MSPDir: build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/msp
-        AnchorPeers:
-            - Host: peer0.pusan.smartm2m.co.kr
-              Port: 7051
         Policies:
             Readers:
                 Type: Signature
@@ -36,13 +32,13 @@ Organizations:
             Admins:
                 Type: Signature
                 Rule: "OR('PusanMSP.admin')"
+        AnchorPeers:
+            - Host: peer0.pusan.smartm2m.co.kr
+              Port: 7051
     - &UlsanOrg
         Name: UlsanMSP
         ID: UlsanMSP
         MSPDir: build/crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/msp
-        AnchorPeers:
-            - Host: peer0.ulsan.smartm2m.co.kr
-              Port: 7051
         Policies:
             Readers:
                 Type: Signature
@@ -53,13 +49,13 @@ Organizations:
             Admins:
                 Type: Signature
                 Rule: "OR('UlsanMSP.admin')"
+        AnchorPeers:
+            - Host: peer0.ulsan.smartm2m.co.kr
+              Port: 7051
     - &SeoulOrg
         Name: SeoulMSP
         ID: SeoulMSP
         MSPDir: build/crypto-config/peerOrganizations/seoul.smartm2m.co.kr/msp
-        AnchorPeers:
-            - Host: peer0.seoul.smartm2m.co.kr
-              Port: 7051
         Policies:
             Readers:
                 Type: Signature
@@ -70,8 +66,39 @@ Organizations:
             Admins:
                 Type: Signature
                 Rule: "OR('SeoulMSP.admin')"
+        AnchorPeers:
+            - Host: peer0.seoul.smartm2m.co.kr
+              Port: 7051
+
+Capabilities:
+    Channel: &ChannelCapabilities
+        V1_4_3: true
+        V1_3: false
+        V1_1: false
+
+    Orderer: &OrdererCapabilities
+        V1_4_2: true
+        V1_1: false
+
+    Application: &ApplicationCapabilities
+        V1_4_2: true
+        V1_3: false
+        V1_2: false
+        V1_1: false
+
 Application: &ApplicationDefaults
-    Organizations:
+    Policies: &ApplicationDefaultPolicies
+        Readers:
+            Type: ImplicitMeta
+            Rule: "ANY Readers"
+        Writers:
+            Type: ImplicitMeta
+            Rule: "ANY Writers"
+        Admins:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Admins"
+    Capabilities:
+        <<: *ApplicationCapabilities
 
 Orderer: &OrdererDefaults
     OrdererType: etcdraft
@@ -79,11 +106,6 @@ Orderer: &OrdererDefaults
         - orderer0.smartm2m.co.kr:7050
         - orderer1.smartm2m.co.kr:7050
         - orderer2.smartm2m.co.kr:7050
-    BatchTimeout: 2s
-    BatchSize:
-        MaxMessageCount: 10
-        AbsoluteMaxBytes: 98 MB
-        PreferredMaxBytes: 512 KB
     EtcdRaft:
         Consenters:
             - Host: orderer0.smartm2m.co.kr
@@ -98,8 +120,14 @@ Orderer: &OrdererDefaults
               Port: 7050
               ClientTLSCert: build/crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer2.smartm2m.co.kr/tls/server.crt
               ServerTLSCert: build/crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer2.smartm2m.co.kr/tls/server.crt
+    BatchTimeout: 2s
+    BatchSize:
+        MaxMessageCount: 10
+        AbsoluteMaxBytes: 98 MB
+        PreferredMaxBytes: 512 KB
+    MaxChannels: 0
     Organizations:
-
+        - *OrdererOrg
     Policies:
         Readers:
             Type: ImplicitMeta
@@ -113,12 +141,34 @@ Orderer: &OrdererDefaults
         BlockValidation:
             Type: ImplicitMeta
             Rule: "ANY Writers"
+    Capabilities:
+        <<: *OrdererCapabilities
+
+Channel: &ChannelDefaults
+    Policies:
+        Readers:
+            Type: ImplicitMeta
+            Rule: "ANY Readers"
+        Writers:
+            Type: ImplicitMeta
+            Rule: "ANY Writers"
+        Admins:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Admins"
+    Capabilities:
+        <<: *ChannelCapabilities
+
 Profiles:
     MainChannel:
+        <<: *ChannelDefaults
+        Capabilities:
+            <<: *ChannelCapabilities
         Orderer:
             <<: *OrdererDefaults
+        Application:
+            <<: *ApplicationDefaults
             Organizations:
-                - *OrdererOrg
+            - <<: *OrdererOrg
         Consortiums:
             BlockMasterConsortium:
                 Organizations:
@@ -127,6 +177,7 @@ Profiles:
                     - *SeoulOrg
     TestChannelA:
         Consortium: BlockMasterConsortium
+        <<: *ChannelDefaults
         Application:
             <<: *ApplicationDefaults
             Organizations:
@@ -134,6 +185,7 @@ Profiles:
                 - *UlsanOrg
     TestChannelB:
         Consortium: BlockMasterConsortium
+        <<: *ChannelDefaults
         Application:
             <<: *ApplicationDefaults
             Organizations:
@@ -141,6 +193,7 @@ Profiles:
                 - *SeoulOrg
     TestChannelC:
         Consortium: BlockMasterConsortium
+        <<: *ChannelDefaults
         Application:
             <<: *ApplicationDefaults
             Organizations:
