@@ -10,46 +10,46 @@ General:
 
     TLS:
         Enabled: true
-        PrivateKey: crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/tls/server.key
-        Certificate: crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/tls/server.crt
+        PrivateKey: build/crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/tls/server.key
+        Certificate: build/crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/tls/server.crt
         RootCAs:
-            - crypto-config/ordererOrganizations/smartm2m.co.kr/tlsca/tlsca.smartm2m.co.kr-cert.pem
-            - crypto-config/peerOrganizations/pusan.smartm2m.co.kr/tlsca/tlsca.pusan.smartm2m.co.kr-cert.pem
-            - crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/tlsca/tlsca.ulsan.smartm2m.co.kr-cert.pem
-            - crypto-config/peerOrganizations/seoul.smartm2m.co.kr/tlsca/tlsca.seoul.smartm2m.co.kr-cert.pem
+            - build/crypto-config/ordererOrganizations/smartm2m.co.kr/tlsca/tlsca.smartm2m.co.kr-cert.pem
+            - build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/tlsca/tlsca.pusan.smartm2m.co.kr-cert.pem
+            - build/crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/tlsca/tlsca.ulsan.smartm2m.co.kr-cert.pem
+            - build/crypto-config/peerOrganizations/seoul.smartm2m.co.kr/tlsca/tlsca.seoul.smartm2m.co.kr-cert.pem
         ClientAuthRequired: true
         ClientRootCAs:
-            - crypto-config/ordererOrganizations/smartm2m.co.kr/tlsca/tlsca.smartm2m.co.kr-cert.pem
-            - crypto-config/peerOrganizations/pusan.smartm2m.co.kr/tlsca/tlsca.pusan.smartm2m.co.kr-cert.pem
-            - crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/tlsca/tlsca.ulsan.smartm2m.co.kr-cert.pem
-            - crypto-config/peerOrganizations/seoul.smartm2m.co.kr/tlsca/tlsca.seoul.smartm2m.co.kr-cert.pem
+            - build/crypto-config/ordererOrganizations/smartm2m.co.kr/tlsca/tlsca.smartm2m.co.kr-cert.pem
+            - build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/tlsca/tlsca.pusan.smartm2m.co.kr-cert.pem
+            - build/crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/tlsca/tlsca.ulsan.smartm2m.co.kr-cert.pem
+            - build/crypto-config/peerOrganizations/seoul.smartm2m.co.kr/tlsca/tlsca.seoul.smartm2m.co.kr-cert.pem
     Keepalive:
         ServerMinInterval: 60s
         ServerInterval: 7200s
         ServerTimeout: 20s
     Cluster:
-        ClientCertificate: crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/tls/server.crt
-        ClientPrivateKey: crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/tls/server.key
+        ClientCertificate: build/crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/tls/server.crt
+        ClientPrivateKey: build/crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/tls/server.key
         DialTimeout: 5s
         RPCTimeout: 7s
         RootCAs:
-            - crypto-config/ordererOrganizations/smartm2m.co.kr/tlsca/tlsca.smartm2m.co.kr-cert.pem
-            - crypto-config/peerOrganizations/pusan.smartm2m.co.kr/tlsca/tlsca.pusan.smartm2m.co.kr-cert.pem
-            - crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/tlsca/tlsca.ulsan.smartm2m.co.kr-cert.pem
-            - crypto-config/peerOrganizations/seoul.smartm2m.co.kr/tlsca/tlsca.seoul.smartm2m.co.kr-cert.pem
+            - build/crypto-config/ordererOrganizations/smartm2m.co.kr/tlsca/tlsca.smartm2m.co.kr-cert.pem
+            - build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/tlsca/tlsca.pusan.smartm2m.co.kr-cert.pem
+            - build/crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/tlsca/tlsca.ulsan.smartm2m.co.kr-cert.pem
+            - build/crypto-config/peerOrganizations/seoul.smartm2m.co.kr/tlsca/tlsca.seoul.smartm2m.co.kr-cert.pem
         ReplicationBufferSize: 20971520
         ReplicationPullTimeout: 5s
         ReplicationRetryTimeout: 5s
     GenesisMethod: file
     GenesisProfile: MainChannel
-    GenesisFile: mc.block
+    GenesisFile: build/block/mc.block
     SystemChannel: test-smartm2m.co.kr-system-channel
-    LocalMSPDir: crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/msp
+    LocalMSPDir: build/crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/msp
     LocalMSPID: OrdererMSP
     Profile:
         Enabled: false
         Address: 0.0.0.0:6060
-    BCulsanP:
+    BCCSP:
         Default: SW
         SW:
             Hash: SHA2
@@ -99,7 +99,7 @@ Kafka:
 Debug:
     BroadcastTraceDir:
     DeliverTraceDir:
-Metriulsan:
+Metrics:
     Provider: disabled
     Statsd:
         Network: udp

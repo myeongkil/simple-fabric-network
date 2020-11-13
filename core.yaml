@@ -9,7 +9,7 @@ peer:
     listenAddress: 0.0.0.0:7051
     address: peer0.pusan.smartm2m.co.kr:7051
     addressAutoDetect: true
-    gomaxproulsan: -1
+    gomaxprocs: -1
     keepalive:
         minInterval: 60s
         client:
@@ -72,38 +72,38 @@ peer:
         enabled:  true
         clientAuthRequired: true
         cert:
-            file: crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/tls/server.crt
+            file: build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/tls/server.crt
         key:
-            file: crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/tls/server.key
+            file: build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/tls/server.key
         rootcert:
-            file: crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/tls/ca.crt
+            file: build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/tls/ca.crt
         clientRootCAs:
             files:
-              - crypto-config/ordererOrganizations/smartm2m.co.kr/tlsca/tlsca.smartm2m.co.kr-cert.pem
-              - crypto-config/peerOrganizations/pusan.smartm2m.co.kr/tlsca/tlsca.pusan.smartm2m.co.kr-cert.pem
-              - crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/tlsca/tlsca.ulsan.smartm2m.co.kr-cert.pem
-              - crypto-config/peerOrganizations/seoul.smartm2m.co.kr/tlsca/tlsca.seoul.smartm2m.co.kr-cert.pem
+              - build/crypto-config/ordererOrganizations/smartm2m.co.kr/tlsca/tlsca.smartm2m.co.kr-cert.pem
+              - build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/tlsca/tlsca.pusan.smartm2m.co.kr-cert.pem
+              - build/crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/tlsca/tlsca.ulsan.smartm2m.co.kr-cert.pem
+              - build/crypto-config/peerOrganizations/seoul.smartm2m.co.kr/tlsca/tlsca.seoul.smartm2m.co.kr-cert.pem
         clientKey:
-            file: crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/tls/server.key
+            file: build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/tls/server.key
         clientCert:
-            file: crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/tls/server.crt
+            file: build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/tls/server.crt
     authentication:
         timewindow: 15m
     fileSystemPath: /var/hyperledger/production/peer
-    BCulsanP:
+    BCCSP:
         Default: SW
         SW:
             Hash: SHA2
             Security: 256
             FileKeyStore:
                 KeyStore:
-    mspConfigPath: crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/msp
+    mspConfigPath: build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/msp
     localMspId: pusanOrg
     deliveryclient:
         reconnectTotalTimeThreshold: 3600s
         connTimeout: 3s
         reConnectBackoffThreshold: 3600s
-    localMspType: bculsanp
+    localMspType: bccsp
     profile:
         enabled:     false
         listenAddress: 0.0.0.0:6060
@@ -170,7 +170,7 @@ chaincode:
     mode: net
     keepalive: 0
     system:
-        ulsancc: enable
+        cscc: enable
         lscc: enable
         escc: enable
         vscc: enable
@@ -188,7 +188,7 @@ ledger:
     couchDBConfig:
        couchDBAddress: couchdb.peer0.pusan.smartm2m.co.kr:5984
        username: admin
-       password: etr2P@ssw0rd
+       password: password
        maxRetries: 3
        maxRetriesOnStartup: 12
        requestTimeout: 35s
@@ -209,7 +209,7 @@ operations:
         clientAuthRequired: false
         clientRootCAs:
             files: []
-metriulsan:
+metrics:
     provider: disabled
     statsd:
         network: udp

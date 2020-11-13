@@ -21,7 +21,7 @@ services:
       - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/${ca_pusan_private_key}
     command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
     volumes:
-      - ./crypto-config/peerOrganizations/pusan.smartm2m.co.kr/ca:/etc/hyperledger/fabric-ca-server-config
+      - ./build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/ca:/etc/hyperledger/fabric-ca-server-config
     ports:
       - 7054:7054
 
@@ -40,7 +40,7 @@ services:
       - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/${ca_ulsan_private_key}
     command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
     volumes:
-      - ./crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/ca:/etc/hyperledger/fabric-ca-server-config
+      - ./build/crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/ca:/etc/hyperledger/fabric-ca-server-config
     ports:
       - 8054:7054
 
@@ -59,7 +59,7 @@ services:
         - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/${ca_seoul_private_key}
       command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
       volumes:
-        - ./crypto-config/peerOrganizations/seoul.smartm2m.co.kr/ca:/etc/hyperledger/fabric-ca-server-config
+        - ./build/crypto-config/peerOrganizations/seoul.smartm2m.co.kr/ca:/etc/hyperledger/fabric-ca-server-config
       ports:
         - 9054:7054
 
@@ -69,14 +69,14 @@ services:
     image: hyperledger/fabric-orderer:1.4.8
     environment:
       - FABRIC_CFG_PATH=/etc/hyperledger/fabric
-      - ORDERER_GENERAL_LOCALMSPDIR=crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/msp
+      - ORDERER_GENERAL_LOCALMSPDIR=build/crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/msp
       # TLS
-      - ORDERER_GENERAL_TLS_PRIVATEKEY=crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/tls/server.key
-      - ORDERER_GENERAL_TLS_CERTIFICATE=crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/tls/server.crt
+      - ORDERER_GENERAL_TLS_PRIVATEKEY=build/crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/tls/server.key
+      - ORDERER_GENERAL_TLS_CERTIFICATE=build/crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/tls/server.crt
 
       # etcdraft
-      - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/tls/server.key
-      - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/tls/server.crt
+      - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=build/crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/tls/server.key
+      - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=build/crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer0.smartm2m.co.kr/tls/server.crt
     working_dir: /etc/hyperledger/fabric
     volumes:
       - ./:/etc/hyperledger/fabric
@@ -89,14 +89,14 @@ services:
     image: hyperledger/fabric-orderer:1.4.8
     environment:
       - FABRIC_CFG_PATH=/etc/hyperledger/fabric
-      - ORDERER_GENERAL_LOCALMSPDIR=crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer1.smartm2m.co.kr/msp
+      - ORDERER_GENERAL_LOCALMSPDIR=build/crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer1.smartm2m.co.kr/msp
       # TLS
-      - ORDERER_GENERAL_TLS_PRIVATEKEY=crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer1.smartm2m.co.kr/tls/server.key
-      - ORDERER_GENERAL_TLS_CERTIFICATE=crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer1.smartm2m.co.kr/tls/server.crt
+      - ORDERER_GENERAL_TLS_PRIVATEKEY=build/crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer1.smartm2m.co.kr/tls/server.key
+      - ORDERER_GENERAL_TLS_CERTIFICATE=build/crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer1.smartm2m.co.kr/tls/server.crt
 
       # etcdraft
-      - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer1.smartm2m.co.kr/tls/server.key
-      - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer1.smartm2m.co.kr/tls/server.crt
+      - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=build/crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer1.smartm2m.co.kr/tls/server.key
+      - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=build/crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer1.smartm2m.co.kr/tls/server.crt
     working_dir: /etc/hyperledger/fabric
     volumes:
       - ./:/etc/hyperledger/fabric
@@ -109,14 +109,14 @@ services:
     image: hyperledger/fabric-orderer:1.4.8
     environment:
       - FABRIC_CFG_PATH=/etc/hyperledger/fabric
-      - ORDERER_GENERAL_LOCALMSPDIR=crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer2.smartm2m.co.kr/msp
+      - ORDERER_GENERAL_LOCALMSPDIR=build/crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer2.smartm2m.co.kr/msp
       # TLS
-      - ORDERER_GENERAL_TLS_PRIVATEKEY=crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer2.smartm2m.co.kr/tls/server.key
-      - ORDERER_GENERAL_TLS_CERTIFICATE=crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer2.smartm2m.co.kr/tls/server.crt
+      - ORDERER_GENERAL_TLS_PRIVATEKEY=build/crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer2.smartm2m.co.kr/tls/server.key
+      - ORDERER_GENERAL_TLS_CERTIFICATE=build/crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer2.smartm2m.co.kr/tls/server.crt
 
       # etcdraft
-      - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer2.smartm2m.co.kr/tls/server.key
-      - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer2.smartm2m.co.kr/tls/server.crt
+      - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=build/crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer2.smartm2m.co.kr/tls/server.key
+      - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=build/crypto-config/ordererOrganizations/smartm2m.co.kr/orderers/orderer2.smartm2m.co.kr/tls/server.crt
     working_dir: /etc/hyperledger/fabric
     volumes:
       - ./:/etc/hyperledger/fabric
@@ -145,19 +145,19 @@ services:
       - CORE_PEER_GOSSIP_ENDPOINT=peer0.pusan.smartm2m.co.kr:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.pusan.smartm2m.co.kr:7051
 
-      - CORE_PEER_TLS_CERT_FILE=crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/tls/server.crt
-      - CORE_PEER_TLS_KEY_FILE=crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/tls/server.key
-      - CORE_PEER_TLS_ROOTCERT_FILE=crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/tls/ca.crt
+      - CORE_PEER_TLS_CERT_FILE=build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/tls/ca.crt
 
-      - CORE_PEER_TLS_CLIENTCERT_FILE=crypto-config/peerOrganizations/pusan.smartm2m.co.kr/users/Admin@pusan.smartm2m.co.kr/tls/client.crt
-      - CORE_PEER_TLS_CLIENTKEY_FILE=crypto-config/peerOrganizations/pusan.smartm2m.co.kr/users/Admin@pusan.smartm2m.co.kr/tls/client.key
-      - CORE_PEER_TLS_CLIENTROOTCAS_FILES=crypto-config/peerOrganizations/pusan.smartm2m.co.kr/users/Admin@pusan.smartm2m.co.kr/tls/ca.crt
+      - CORE_PEER_TLS_CLIENTCERT_FILE=build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/users/Admin@pusan.smartm2m.co.kr/tls/client.crt
+      - CORE_PEER_TLS_CLIENTKEY_FILE=build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/users/Admin@pusan.smartm2m.co.kr/tls/client.key
+      - CORE_PEER_TLS_CLIENTROOTCAS_FILES=build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/users/Admin@pusan.smartm2m.co.kr/tls/ca.crt
 
-      - CORE_PEER_MSPCONFIGPATH=crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/msp
+      - CORE_PEER_MSPCONFIGPATH=build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/msp
       - CORE_PEER_LOCALMSPID=pusanOrg
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.peer0.pusan.smartm2m.co.kr:5984
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=peer0.pusan
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=etr0P@ssw0rd
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=admin
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=password
     working_dir: /etc/hyperledger/fabric
     volumes:
       - ./:/etc/hyperledger/fabric
@@ -189,19 +189,19 @@ services:
       - CORE_PEER_GOSSIP_ENDPOINT=peer0.ulsan.smartm2m.co.kr:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.ulsan.smartm2m.co.kr:7051
 
-      - CORE_PEER_TLS_CERT_FILE=crypto-config/peerorganizations/ulsan.smartm2m.co.kr/peers/peer0.ulsan.smartm2m.co.kr/tls/server.crt
-      - CORE_PEER_TLS_KEY_FILE=crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/peers/peer0.ulsan.smartm2m.co.kr/tls/server.key
-      - CORE_PEER_TLS_ROOTCERT_FILE=crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/peers/peer0.ulsan.smartm2m.co.kr/tls/ca.crt
+      - CORE_PEER_TLS_CERT_FILE=build/crypto-config/peerorganizations/ulsan.smartm2m.co.kr/peers/peer0.ulsan.smartm2m.co.kr/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=build/crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/peers/peer0.ulsan.smartm2m.co.kr/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=build/crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/peers/peer0.ulsan.smartm2m.co.kr/tls/ca.crt
 
-      - CORE_PEER_TLS_CLIENTCERT_FILE=crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/users/Admin@ulsan.smartm2m.co.kr/tls/client.crt
-      - CORE_PEER_TLS_CLIENTKEY_FILE=crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/users/Admin@ulsan.smartm2m.co.kr/tls/client.key
-      - CORE_PEER_TLS_CLIENTROOTCAS_FILES=crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/users/Admin@ulsan.smartm2m.co.kr/tls/ca.crt
+      - CORE_PEER_TLS_CLIENTCERT_FILE=build/crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/users/Admin@ulsan.smartm2m.co.kr/tls/client.crt
+      - CORE_PEER_TLS_CLIENTKEY_FILE=build/crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/users/Admin@ulsan.smartm2m.co.kr/tls/client.key
+      - CORE_PEER_TLS_CLIENTROOTCAS_FILES=build/crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/users/Admin@ulsan.smartm2m.co.kr/tls/ca.crt
 
-      - CORE_PEER_MSPCONFIGPATH=crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/peers/peer0.ulsan.smartm2m.co.kr/msp
+      - CORE_PEER_MSPCONFIGPATH=build/crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/peers/peer0.ulsan.smartm2m.co.kr/msp
       - CORE_PEER_LOCALMSPID=ulsanOrg
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.peer0.ulsan.smartm2m.co.kr:5984
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=peer0.ulsan
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=etr1P@ssw0rd
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=admin
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=password
     working_dir: /etc/hyperledger/fabric
     volumes:
       - ./:/etc/hyperledger/fabric
@@ -233,19 +233,19 @@ services:
       - CORE_PEER_GOSSIP_ENDPOINT=peer0.seoul.smartm2m.co.kr:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.seoul.smartm2m.co.kr:7051
 
-      - CORE_PEER_TLS_CERT_FILE=crypto-config/peerOrganizations/seoul.smartm2m.co.kr/peers/peer0.seoul.smartm2m.co.kr/tls/server.crt
-      - CORE_PEER_TLS_KEY_FILE=crypto-config/peerOrganizations/seoul.smartm2m.co.kr/peers/peer0.seoul.smartm2m.co.kr/tls/server.key
-      - CORE_PEER_TLS_ROOTCERT_FILE=crypto-config/peerOrganizations/seoul.smartm2m.co.kr/peers/peer0.seoul.smartm2m.co.kr/tls/ca.crt
+      - CORE_PEER_TLS_CERT_FILE=build/crypto-config/peerOrganizations/seoul.smartm2m.co.kr/peers/peer0.seoul.smartm2m.co.kr/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=build/crypto-config/peerOrganizations/seoul.smartm2m.co.kr/peers/peer0.seoul.smartm2m.co.kr/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=build/crypto-config/peerOrganizations/seoul.smartm2m.co.kr/peers/peer0.seoul.smartm2m.co.kr/tls/ca.crt
 
-      - CORE_PEER_TLS_CLIENTCERT_FILE=crypto-config/peerOrganizations/seoul.smartm2m.co.kr/users/Admin@seoul.smartm2m.co.kr/tls/client.crt
-      - CORE_PEER_TLS_CLIENTKEY_FILE=crypto-config/peerOrganizations/seoul.smartm2m.co.kr/users/Admin@seoul.smartm2m.co.kr/tls/client.key
-      - CORE_PEER_TLS_CLIENTROOTCAS_FILES=crypto-config/peerOrganizations/seoul.smartm2m.co.kr/users/Admin@seoul.smartm2m.co.kr/tls/ca.crt
+      - CORE_PEER_TLS_CLIENTCERT_FILE=build/crypto-config/peerOrganizations/seoul.smartm2m.co.kr/users/Admin@seoul.smartm2m.co.kr/tls/client.crt
+      - CORE_PEER_TLS_CLIENTKEY_FILE=build/crypto-config/peerOrganizations/seoul.smartm2m.co.kr/users/Admin@seoul.smartm2m.co.kr/tls/client.key
+      - CORE_PEER_TLS_CLIENTROOTCAS_FILES=build/crypto-config/peerOrganizations/seoul.smartm2m.co.kr/users/Admin@seoul.smartm2m.co.kr/tls/ca.crt
 
-      - CORE_PEER_MSPCONFIGPATH=crypto-config/peerOrganizations/seoul.smartm2m.co.kr/peers/peer0.seoul.smartm2m.co.kr/msp
+      - CORE_PEER_MSPCONFIGPATH=build/crypto-config/peerOrganizations/seoul.smartm2m.co.kr/peers/peer0.seoul.smartm2m.co.kr/msp
       - CORE_PEER_LOCALMSPID=seoulOrg
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.peer0.seoul.smartm2m.co.kr:5984
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=peer0.seoul
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=etr2P@ssw0rd
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=admin
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=password
     working_dir: /etc/hyperledger/fabric
     volumes:
       - ./:/etc/hyperledger/fabric
@@ -261,20 +261,20 @@ services:
     image: hyperledger/fabric-tools:1.4.8
     environment:
       - FABRIC_CFG_PATH=/etc/hyperledger/fabric
-      - CORE_PEER_MSPCONFIGPATH=crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/msp
+      - CORE_PEER_MSPCONFIGPATH=build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/msp
       - CORE_PEER_LOCALMSPID=pusanOrg
       - CORE_PEER_ID=cli.smartm2m.co.kr
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=cli.smartm2m.co.kr:7051
       - CORE_PEER_GOSSIP_BOOTSTRAP=cli.smartm2m.co.kr:7051
       - CORE_LEDGER_STATE_STATEDATABASE=goleveldb
 
-      - CORE_PEER_TLS_CERT_FILE=crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/tls/server.crt
-      - CORE_PEER_TLS_KEY_FILE=crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/tls/server.key
-      - CORE_PEER_TLS_ROOTCERT_FILE=crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/tls/ca.crt
+      - CORE_PEER_TLS_CERT_FILE=build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/tls/ca.crt
 
-      - CORE_PEER_TLS_CLIENTCERT_FILE=crypto-config/peerOrganizations/pusan.smartm2m.co.kr/users/Admin@pusan.smartm2m.co.kr/tls/client.crt
-      - CORE_PEER_TLS_CLIENTKEY_FILE=crypto-config/peerOrganizations/pusan.smartm2m.co.kr/users/Admin@pusan.smartm2m.co.kr/tls/client.key
-      - CORE_PEER_TLS_CLIENTROOTCAS_FILES=crypto-config/peerOrganizations/pusan.smartm2m.co.kr/users/Admin@pusan.smartm2m.co.kr/tls/ca.crt
+      - CORE_PEER_TLS_CLIENTCERT_FILE=build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/users/Admin@pusan.smartm2m.co.kr/tls/client.crt
+      - CORE_PEER_TLS_CLIENTKEY_FILE=build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/users/Admin@pusan.smartm2m.co.kr/tls/client.key
+      - CORE_PEER_TLS_CLIENTROOTCAS_FILES=build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/users/Admin@pusan.smartm2m.co.kr/tls/ca.crt
 
     working_dir: /etc/hyperledger/fabric
     command: sh -c "peer node start"

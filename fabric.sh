@@ -5,8 +5,6 @@ function cryptogen {
     docker run -i -t --rm -v $(pwd):/crypto --workdir /crypto \
         hyperledger/fabric-tools:1.4.8 \
         cryptogen generate --config=crypto-config.yaml
-
-    mv $rootdir/crypto-config $bdir/crypto-config
 }
 
 function configtxgen {
@@ -47,12 +45,24 @@ function build {
 }
 
 function clean {
+    down
+    docker network rm blockchain > /dev/null 2>&1
     rm -rf $bdir
+}
+
+function down {
+    docker-compose -f $rootdir/docker-compose.yaml down -v
+}
+
+function up {
+    docker network create blockchain > /dev/null 2>&1
+    docker-compose -f $rootdir/docker-compose.yaml up -d
 }
 
 function all {
     clean
     build
+    up
 }
 
 function main {
