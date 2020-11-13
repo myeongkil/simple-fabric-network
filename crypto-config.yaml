@@ -1,0 +1,44 @@
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+OrdererOrgs:
+    - Name: Orderer
+      Domain: smartm2m.co.kr
+      CA:
+        Country: KR
+        Province: Pusan
+      Template:
+        Count: 3
+PeerOrgs:
+    - Name: pusan
+      Domain: pusan.smartm2m.co.kr
+      EnableNodeOUs: true
+      CA:
+        Country: KR
+        Province: Pusan
+      Template:
+        Count: 5
+      Users:
+        Count: 1
+    - Name: ulsan
+      Domain: ulsan.smartm2m.co.kr
+      EnableNodeOUs: true
+      CA:
+        Country: KR
+        Province: Ulsan
+      Template:
+        Count: 5
+      Users:
+        Count: 1
+    - Name: seoul
+      Domain: seoul.smartm2m.co.kr
+      EnableNodeOUs: true
+      CA:
+        Country: KR
+        Province: Seoul
+      Template:
+        Count: 5
+      Users:
+        Count: 1
