@@ -154,7 +154,7 @@ services:
       - CORE_PEER_TLS_CLIENTROOTCAS_FILES=build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/users/Admin@pusan.smartm2m.co.kr/tls/ca.crt
 
       - CORE_PEER_MSPCONFIGPATH=build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/msp
-      - CORE_PEER_LOCALMSPID=pusanOrg
+      - CORE_PEER_LOCALMSPID=PusanMSP
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.peer0.pusan.smartm2m.co.kr:5984
       - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=admin
       - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=password
@@ -198,7 +198,7 @@ services:
       - CORE_PEER_TLS_CLIENTROOTCAS_FILES=build/crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/users/Admin@ulsan.smartm2m.co.kr/tls/ca.crt
 
       - CORE_PEER_MSPCONFIGPATH=build/crypto-config/peerOrganizations/ulsan.smartm2m.co.kr/peers/peer0.ulsan.smartm2m.co.kr/msp
-      - CORE_PEER_LOCALMSPID=ulsanOrg
+      - CORE_PEER_LOCALMSPID=UlsanMSP
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.peer0.ulsan.smartm2m.co.kr:5984
       - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=admin
       - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=password
@@ -242,7 +242,7 @@ services:
       - CORE_PEER_TLS_CLIENTROOTCAS_FILES=build/crypto-config/peerOrganizations/seoul.smartm2m.co.kr/users/Admin@seoul.smartm2m.co.kr/tls/ca.crt
 
       - CORE_PEER_MSPCONFIGPATH=build/crypto-config/peerOrganizations/seoul.smartm2m.co.kr/peers/peer0.seoul.smartm2m.co.kr/msp
-      - CORE_PEER_LOCALMSPID=seoulOrg
+      - CORE_PEER_LOCALMSPID=SeoulMSP
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.peer0.seoul.smartm2m.co.kr:5984
       - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=admin
       - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=password

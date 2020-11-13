@@ -98,7 +98,7 @@ peer:
             FileKeyStore:
                 KeyStore:
     mspConfigPath: build/crypto-config/peerOrganizations/pusan.smartm2m.co.kr/peers/peer0.pusan.smartm2m.co.kr/msp
-    localMspId: pusanOrg
+    localMspId: PusanMSP
     deliveryclient:
         reconnectTotalTimeThreshold: 3600s
         connTimeout: 3s
