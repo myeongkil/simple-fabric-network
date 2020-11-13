@@ -102,15 +102,73 @@ function channel_join {
     $header peer0.$org.smartm2m.co.kr peer channel join -b build/block/$channel.block
 }
 
+function chaincode_install {
+    shift
+    org=$1
+    docker_env $org $2
+
+    $header cli.smartm2m.co.kr peer chaincode install -n mycc -v 1.0 -p github.com/myeongkil/simple-fabric-network/chaincode/sacc
+}
+
+function chaincode_instantiate {
+    shift
+    org=$1
+    docker_env $org $2
+    channel=$3
+    cc_init_input='{"Args":["kmk","500"]}'
+    $header cli.smartm2m.co.kr peer chaincode instantiate -n mycc -v 1.0 -C $channel -c $cc_init_input -o orderer0.smartm2m.co.kr:7050 $tail
+}
+
+function chaincode_invoke {
+    shift
+    org=$1
+    docker_env $org $2
+    channel=$3
+    cc_input='{"Args":["set","zz","500"]}'
+    $header cli.smartm2m.co.kr peer chaincode invoke -n mycc -C $channel -c $cc_input -o orderer0.smartm2m.co.kr:7050 $tail
+}
+
+function chaincode_query {
+    shift
+    org=$1
+    docker_env $org $2
+    channel=$3
+    cc_input='{"Args":["get","zz"]}'
+    $header cli.smartm2m.co.kr peer chaincode query -n mycc -C $channel -c $cc_input
+}
+
 function channel {
     shift
     channel_$1 $@
 }
 
+function chaincode {
+    shift
+    chaincode_$1 $@
+}
+
 function all {
-    clean
-    build
-    up
+    # clean
+    # build
+    # up
+    # down
+    # up
+    # channel create create pusan Pusan tca
+    # channel create create pusan Pusan tcb
+    # channel create create ulsan Ulsan tcc
+    # channel join join pusan Pusan tca
+    # channel join join pusan Pusan tcb
+    # channel join join ulsan Ulsan tca
+    # channel join join ulsan Ulsan tcc
+    # channel join join seoul Seoul tcb
+    # channel join join seoul Seoul tcc
+
+    # chaincode install install pusan Pusan
+    # chaincode install install ulsan Ulsan
+    # chaincode install install seoul Seoul
+    chaincode instantiate instantiate pusan Pusan tca
+    chaincode instantiate instantiate pusan Pusan tcb
+    chaincode instantiate instantiate ulsan Ulsan tcc
 }
 
 function main {
