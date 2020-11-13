@@ -3,7 +3,7 @@ version: '3'
 networks:
   default:
     external:
-      name: smartm2m
+      name: blockchain
 
 services:
   ca.pusan.smartm2m.co.kr:
