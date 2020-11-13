@@ -6,7 +6,7 @@ function cryptogen {
         hyperledger/fabric-tools:1.4.8 \
         cryptogen generate --config=crypto-config.yaml
 
-    mv $rootdir/crypto-config $bdir
+    mv $rootdir/crypto-config $bdir/crypto-config
 }
 
 function configtxgen {
