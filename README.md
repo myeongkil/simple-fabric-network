@@ -1,8 +1,8 @@
 # blockchain master
 lecturer : myeongkil
 
->> 2020.11.13 - first commit, This is the content that was conducted during the blockchain-master-training-lecture
->> 2020.11.15 - after lecture, v1.0 update
+>> 2020.11.13 - first commit, This is the content that was conducted during the blockchain-master-training-lecture \
+>> 2020.11.15 - after lecture, v1.0 update \
 >> (generate, network up, channel create-join, chaincode install-instantiate-invoke-query)
 
 ## Hyperledger Fabric
